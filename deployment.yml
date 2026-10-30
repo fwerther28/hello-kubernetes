@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: hello-kubernetes
-          image: werther83/hello-kubernetes:v2
+          image: werther83/hello-kubernetes:v3
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
