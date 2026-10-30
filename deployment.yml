@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-kubernetes-deployment
+  labels:
+    app: hello-kubernetes
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-kubernetes
+  template:
+    metadata:
+      labels:
+        app: hello-kubernetes
+    spec:
+      containers:
+        - name: hello-kubernetes
+          image: werther83/hello-kubernetes:v2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-kubernetes-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: hello-kubernetes
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
